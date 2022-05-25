@@ -1,1 +1,1 @@
-console.log("Here we go")
+const Message = require("./message")
