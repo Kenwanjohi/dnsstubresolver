@@ -4,7 +4,7 @@
  * @returns {string} Hex string
  */
 function dec2hex(i) {
-  return (i + 0x10000).toString(16).slice(-4).toUpperCase();
+  return i.toString(16).padStart(4, '0').toUpperCase();
 }
 
 /**
