@@ -1,0 +1,15 @@
+{
+  "name": "dnsstubresolver",
+  "version": "1.0.0",
+  "description": "A tiny javascript dns client/resolver",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src",
+    "test": "test"
+  },
+  "author": "Ken Wanjohi",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
