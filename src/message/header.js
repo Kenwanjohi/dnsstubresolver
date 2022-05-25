@@ -1,27 +1,27 @@
 /**
  * Header section of a DNS Message
- *
- *
- *   0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5
- * +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
- * |                      ID                       |
- * +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
- * |QR|   Opcode  |AA|TC|RD|RA| Z|AD|CD|   RCODE   |
- * +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
- * |                    QDCOUNT                    |
- * +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
- * |                    ANCOUNT                    |
- * +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
- * |                    NSCOUNT                    |
- * +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
- * |                    ARCOUNT                    |
- * +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+
+            0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5
+          +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+          |                      ID                       |
+          +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+          |QR|   Opcode  |AA|TC|RD|RA| Z|AD|CD|   RCODE   |
+          +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+          |                    QDCOUNT                    |
+          +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+          |                    ANCOUNT                    |
+          +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+          |                    NSCOUNT                    |
+          +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+          |                    ARCOUNT                    |
+          +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
  */
 
+const MAX_ID = 65535;
 class Header {
   constructor() {
     /**Identifier: 16-bit device id field */
-    this.id = 12345;
+    this.id = this.generateHeaderId();
     /**Query/Response: 1-bit flag set to 0 for queries and 1 for response by server */
     this.qr = 0;
     /**Operation code: 4-bits the message query type
@@ -57,6 +57,11 @@ class Header {
     /**Additional Record count;  2 bytes, No of RRs in Additional section*/
     this.arcount = 0;
   }
+
+  /**Generate a random 16-bit Integer for Header id field*/
+  generateHeaderId() {
+    return Math.ceil(Math.random() * MAX_ID);
+  }
 }
 
-module.exports = Header
+module.exports = Header;
