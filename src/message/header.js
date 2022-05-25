@@ -1,3 +1,6 @@
+const { hexify } = require("../utilities/encoder");
+const MAX_ID = 65535;
+
 /**
  * Header section of a DNS Message
 
@@ -17,7 +20,6 @@
           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
  */
 
-const MAX_ID = 65535;
 class Header {
   constructor() {
     /**Identifier: 16-bit device id field */
@@ -61,6 +63,33 @@ class Header {
   /**Generate a random 16-bit Integer for Header id field*/
   generateHeaderId() {
     return Math.ceil(Math.random() * MAX_ID);
+  }
+
+  /**
+   * Encodes the Header fields
+   * @returns {string} header fields concatenated hexstring
+   */
+  encode() {
+    let concatQr2Rcode =
+      (this.qr << 15) |
+      (this.opcode << 11) |
+      (this.aa << 10) |
+      (this.tc << 9) |
+      (this.rd << 8) |
+      (this.ra << 7) |
+      (this.z << 6) |
+      (this.ad << 5) |
+      (this.cd << 4) |
+      this.rcode;
+    let headerFields = [
+      this.id,
+      concatQr2Rcode,
+      this.qdcount,
+      this.ancount,
+      this.nscount,
+      this.arcount,
+    ];
+    return hexify(headerFields);
   }
 }
 
