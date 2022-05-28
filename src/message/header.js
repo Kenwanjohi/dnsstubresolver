@@ -1,4 +1,3 @@
-const { hexify } = require("../utilities/encoder");
 const MAX_ID = 65535;
 
 /**
@@ -89,7 +88,12 @@ class Header {
       this.nscount,
       this.arcount,
     ];
-    return hexify(headerFields);
+    const headerBuf = Buffer.allocUnsafe(12);
+    for (let i = 0, j = 0; i < 6; i++, j += 2) {
+      headerBuf.writeUInt16BE(headerFields[i], j);
+    }
+
+    return headerBuf;
   }
 }
 
