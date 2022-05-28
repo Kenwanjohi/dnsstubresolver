@@ -6,8 +6,9 @@ const Punycode = require("punycode/");
  * @returns A punycode string
  */
 function punycode(name) {
+
   try {
-    return Punycode.toASCII(name);
+    return Punycode.toASCII(name.toLocaleLowerCase());
   } catch {
     return name;
   }
