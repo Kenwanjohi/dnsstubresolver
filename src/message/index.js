@@ -14,6 +14,14 @@ class Message {
     const question = new Question(name, type, klass);
     this.question.push(question);
   }
+  
+  encode() {
+
+  }
+
+  decode() {
+    
+  }
 }
 
 module.exports = Message;
