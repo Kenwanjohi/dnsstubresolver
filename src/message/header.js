@@ -106,6 +106,11 @@ class Header {
       // Unpack flags
       if (i == 2) {
         const flags = buf.readUInt16BE(2);
+        /**
+         * Flags and codes format in binary
+         * Example:
+         * 1|0000|0|0|1|1|000|0000
+         */
         this.qr = flags >> 15;
         this.opcode = (flags >> 11) & 15; // 4bits
         this.aa = (flags >> 10) & 1;
