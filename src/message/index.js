@@ -14,13 +14,14 @@ class Message {
     const question = new Question(name, type, klass);
     this.question.push(question);
   }
-  
-  encode() {
 
-  }
+  encode() {}
 
   decode() {
-    
+    let dnsresponse =
+    "65d181800001000100000000076578616d706c6503636f6d0000010001c00c000100010000518700045db8d822";
+    let resHeader = new Header(dnsresponse)
+    return resHeader
   }
 }
 
